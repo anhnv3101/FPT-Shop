@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
+import upload from "../configs/upload.js"; // chú ý đường dẫn đúng
+
 const uploadRouter = express.Router();
-const path = require("path");
-const upload = require("../configs/upload.js"); // dùng đúng middleware export sẵn
 
 uploadRouter.post("/images", upload.single("image"), (req, res) => {
   try {
@@ -21,4 +21,4 @@ uploadRouter.post("/images", upload.single("image"), (req, res) => {
   }
 });
 
-module.exports = uploadRouter;
+export default uploadRouter;
