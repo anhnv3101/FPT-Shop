@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-
-const uploadImage = require('./images.router.js');
+import uploadImage from './images.router.js';
+import authRoutes from './authRoutes.js';
 
 // Gán các router con vào router chính với tiền tố URL phù hợp
 
 router.use('/upload', uploadImage);
+router.use('/auth', authRoutes);
 
-module.exports = router;
+export default router;

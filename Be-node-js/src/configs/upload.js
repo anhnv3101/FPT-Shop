@@ -1,7 +1,12 @@
 // config/multerConfig.js
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+// Lấy __dirname trong ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Khởi tạo đường dẫn upload
 const uploadDir = path.resolve(__dirname, "../uploads");
@@ -33,14 +38,15 @@ const fileFilter = (_, file, cb) => {
   ];
   allowedTypes.includes(file.mimetype)
     ? cb(null, true)
-    : cb(new Error("Chỉ hỗ trợ file ảnh "));
+    : cb(new Error("Chỉ hỗ trợ file ảnh"));
 };
 
-// Tạo middleware multer
+// Middleware multer
 const upload = multer({
   storage,
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 }, // Giới hạn 5MB
 });
 
-module.exports = upload;
+// ✅ export mặc định để import dễ dàng
+export default upload;
