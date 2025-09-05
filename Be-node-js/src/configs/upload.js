@@ -22,6 +22,7 @@ const storage = multer.diskStorage({
     const uniqueName = `${Date.now()}-${Math.floor(Math.random() * 1e6)}${ext}`;
     cb(null, uniqueName);
   },
+  
 });
 
 // Lọc file upload (chỉ nhận ảnh)
